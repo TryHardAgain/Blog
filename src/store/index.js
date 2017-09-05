@@ -24,7 +24,7 @@ const state={
     spanLeft:5,
     spanRight:19,
     temporaryArticle:null,
-    // articles:[],
+    articles:[],
     isUpdateArticle:false,
     articlestotal:0,
     articleList:[],

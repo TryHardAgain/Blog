@@ -20,7 +20,9 @@
                 <div class="row Article" v-for="(Article,index) in ArticleList" :key='index' v-if='Article.types[0]===item.title'>
                     <div class="Article_Title">
                         <h1>
-                            <span>{{Article.title}}</span>
+                            <router-link :to='"/Detaile/"+Article._id'>
+                                <span>{{Article.title}}</span>
+                            </router-link>
                         </h1>
                         <div class="Article_info">
                             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -32,11 +34,14 @@
                             <div class='hr_xx'></div>
                         </div>
                         <blockquote class='Article_Content'>
-                            {{Article.sourceContent}}
+                            <section v-html='Article.content'></section> 
                         </blockquote>
                     </div>
+                    <div class='hr'>
+                        <i class="fa fa-tags" aria-hidden="true"></i>{{Article.types[0]}}
+                    </div>
                 </div>
-                <div v-for="(Article1,index) in ArticleList" :key='index'>
+                <div class='PageList'>
                     <PageList :limit='limit' ref='pager'></PageList>
                 </div>
             </article>
@@ -79,20 +84,13 @@
         created(){
             this.GetArticleList(this.$store.state.currPage)
         },
-        mounted(){
-            this.GetNavList(),
-            console.log(this.NavList),
-            console.log(this.types())
-        },
         methods:{
             formatDate(date){
                 return formatDateTime(date)
             },
-            GetNavList(){
-                this.$store.dispatch('GetNavList')
-            },
+            
             GetArticleList(skip){
-                this.$store.dispatch('GetArticleList',{limit:this.limit,skip:skip})
+                this.$store.dispatch('GetArticleList',{limit:this.limit,skip:skip,NavTypes:this.NavListURL})
             },
             types(){
                 let {keys, values, entries} = Object;
@@ -112,29 +110,27 @@
 
 <style lang='scss'>
     .Nav_index{
+        margin-top:50px;
         main{
-            width:100%;
-            float:center;
         }
         .row{
             margin:0;
             padding:0;
+            max-width:100%;
         }
         .Article_Title{
-            padding-top:40px;
+            padding-top:30px;
             color:RGB(44,62,80);
             font-size:inherit;
             padding-left:15%;
             padding-right:15%;
+            min-height:360px;
         }
         .Article_Title>h1>span{
             font-weight:bolder;
         }
         h1{
             text-align:center;
-        }
-        .Article{
-            min-height:400px;
         }
         .Article_info{
             line-height:30px;
@@ -150,12 +146,33 @@
             margin-top:5px;
             border:1px dashed #ADADAD;
         }
+        .fa-tags{
+            color:grey !important;
+            font-size:16px !important;
+            margin-bottom:10px !important;
+        }
+        .hr{
+            border-bottom:4px solid grey;
+            margin-top:10px;
+            margin-left:15%;
+            margin-right:15%;
+            margin-bottom:10px;
+        }
         .Article_Content{
             margin-top:10px;
             color:#7f8c8d;
             font-size:16px;
             border-left: 4px solid #28a745;
             padding-left:15px;
+            max-height:200px;
+            overflow:hidden;
+        }
+        .Article_Content>section{
+                line-height:30px;
+        }
+        .PageList{
+            display: flex;
+            justify-content:center;
         }
     }
 </style>

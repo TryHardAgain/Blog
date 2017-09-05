@@ -322,5 +322,17 @@ export default {
                 type:'error'
             })
         })
+    },
+    Detaile({commit},id){
+        return api.Detaile(id).then(response=>{
+            commit(types.DETAILE,response.data.article)
+            console.log(response.data)
+        })
+        .catch(err=>{
+            ShowModal(commit,{
+                message:'get article detaile',
+                type:'error'
+            })
+        })
     }
 }

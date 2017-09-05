@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../components/Home/Home.vue'
 import Login from '../components/Login/Login.vue'
 import Page from '../components/Page/Page.vue'
+import Detaile from '../components/Common/Detaile.vue'
 import Javascript from '../components/Page/Javascript/javascript.vue'
 import JQuery from '../components/Page/JQuery/jquery.vue'
 import CSS from '../components/Page/CSS/css.vue'
@@ -34,10 +35,14 @@ const routes=[
               name:'Index'
             },
             {
-              path:':Nav1Title',
+              path:'/Page/:Nav1Title',
               component:Index,
               name:'Nav1Title'
-            }
+            },
+            {
+              path:'/Detaile/:id',
+              component:Detaile
+            },
           ]
         }
       ] 

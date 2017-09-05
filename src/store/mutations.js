@@ -92,5 +92,8 @@ export default {
     [types.UPDATENAVLIST](state,data){
         state.isUpdateNav=false
         state.temporaryNav={}
+    },
+    [types.DETAILE](state,data){
+        state.articles=data
     }
 }

@@ -34,10 +34,15 @@
                 </Menu>
             </Col>
             <Col :span="spanRight" class='right'>
-                <div class="layout-header">
+                <div class="layout-header" :class="{layoutactive:this.spanLeft===2}">
                     <HeaderComponent></HeaderComponent>
                 </div>
-                <router-view></router-view>
+                <div class="layout-right">
+                    <router-view></router-view>
+                </div>
+                <div class="layout-copy">
+                    Copyright © 2017 Trfzxq博客
+                </div>
             </Col>
             <!-- <div class="row">
                 
@@ -185,7 +190,17 @@
     }
     .right{
         float:right;
-        height: 100%;
+    }
+    .layout-header{
+        position: fixed;
+        top:0;
+        width:80%;
+    }
+    .layoutactive{
+        width:92%;
+    }
+    .layout-right{
+        overflow:auto;
     }
     .active{
         display:block;
@@ -306,13 +321,7 @@
     }
     
     .layout{
-        border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: fixed;
-        border-radius: 4px;
-        overflow: hidden;
-        min-height:100%;
-        min-width:100%;
+        
     }
     .layout-content{
         min-height: 200px;

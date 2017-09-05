@@ -36,7 +36,8 @@
     export default {
         data(){
             return{
-                limit:10
+                limit:10,
+                NavTypes:''
             }
         },
         computed:{
@@ -63,7 +64,7 @@
                 return formatDateTime(date)
             },
             GetArticleList(skip){
-                this.$store.dispatch('GetArticleList',{limit:this.limit,skip:skip})
+                this.$store.dispatch('GetArticleList',{limit:this.limit,skip:skip,NavTypes:this.NavTypes})
             },
             updateArticle(index){
                 this.$store.dispatch('SaveUpdateArticle',index)

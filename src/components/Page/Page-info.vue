@@ -32,7 +32,7 @@
                             <span class="layout-text">{{model.title}}</span>
                         </template>
                         <div v-for="(item1,index) in GetNav" :key='index'>
-                            <router-link :to="item1.title">
+                            <router-link :to="'/Page/'+item1.title">
                                 <MenuItem :name="1-index++" v-if="item1.type===model.title" >{{item1.title}}</MenuItem>
                             </router-link>
                         </div>
@@ -75,12 +75,10 @@
             }
         },
         created(){
-            console.log(this.model)
         },
         methods:{
             toggle(index){
                 this.open=!this.open
-                console.log(this.model)
             },
             // NavList_Click(){
             //     this.$store.dispatch('NavList_Click')

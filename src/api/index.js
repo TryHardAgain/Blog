@@ -28,7 +28,7 @@ export default {
     GetArticleList:function(options){
         let url='/api/GetArticleList'
         return axios.get(url,{
-            params:{limit:options.limit,skip:options.skip,name:options.name}
+            params:{limit:options.limit,skip:options.skip,NavTypes:options.NavTypes}
         })
     },
     RemoveArticle:function(id){
@@ -58,6 +58,10 @@ export default {
     UpdateNavList:function(data){
         let url='/api/UpdateNavList'
         return axios.put(url,data)
+    },
+    Detaile:function(id){
+        let url='/api/Detaile/'+ id
+        return axios.get(url)
     }
 }
 
